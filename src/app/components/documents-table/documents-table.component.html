@@ -1,0 +1,63 @@
+<!-- <div *ngFor="let x of serviceData | async | keyvalue">
+  <div>{{ x.key }}</div>
+</div> -->
+<div class="toolbar" *ngIf="serviceData">
+  <div class="buttons">
+    <button (click)="openDialog()" mat-mini-fab color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button
+      (click)="openDialog()"
+      [disabled]="!activeId"
+      mat-mini-fab
+      color="primary"
+    >
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button [disabled]="!activeId" mat-mini-fab color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Вид документа</mat-label>
+    <mat-select>
+      <mat-option>Вид документа</mat-option>
+      <mat-option
+        *ngFor="let documentName of serviceData.documentNames | keyvalue"
+        >{{ documentName.value }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Номер</mat-label>
+    <input matInput placeholder="Номер" value="" />
+  </mat-form-field>
+  <button mat-raised-button>Найти</button>
+  <button mat-raised-button>Очистить</button>
+</div>
+<div *ngIf="tableData && serviceData">
+  <div
+    [class.archived]="tableItem.isArchived"
+    [class.active]="activeId === tableItem.id"
+    class="table-row"
+    *ngFor="let tableItem of tableData"
+    (click)="chooseDocument(tableItem.id)"
+  >
+    <div class="small-cell">
+      <mat-icon color="primary" *ngIf="tableItem.isMain">done</mat-icon>
+    </div>
+    <div class="table-cell">
+      {{ serviceData.documentNames[tableItem.documentType] }}
+    </div>
+    <div class="table-cell">
+      {{ tableItem.series }}
+    </div>
+    <div class="table-cell">
+      {{ tableItem.number }}
+    </div>
+    <div class="table-cell">
+      {{ tableItem.dateOfIssue | date: "dd.MM.YYYY" }}
+    </div>
+  </div>
+</div>

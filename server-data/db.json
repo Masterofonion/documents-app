@@ -1,0 +1,51 @@
+{
+  "documents": [
+    {
+      "id": "1",
+      "documentType": "passport",
+      "series": "2510",
+      "number": "123321",
+      "dateOfIssue": "2002-11-02T00:00:00",
+      "isMain": true,
+      "isArchived": false
+    },
+    {
+      "id": "2",
+      "documentType": "internationalPassport",
+      "series": "jh67",
+      "number": "234432",
+      "dateOfIssue": "2012-01-22T00:00:00",
+      "isMain": true,
+      "isArchived": true
+    },
+    {
+      "id": "3",
+      "documentType": "internationalPassport",
+      "series": "fr34",
+      "number": "345543",
+      "dateOfIssue": "1992-12-12T00:00:00",
+      "isMain": false,
+      "isArchived": false
+    },
+    {
+      "id": "4",
+      "documentType": "birthCertificate",
+      "series": "lkhj",
+      "number": "456654",
+      "dateOfIssue": "2020-05-17T00:00:00",
+      "isMain": false,
+      "isArchived": true
+    }
+  ],
+  "document-names": {
+    "passport": "Паспорт",
+    "internationalPassport": "Загранпаспорт",
+    "birthCertificate": "Свидетельство о рождении"
+  },
+  "organizations": [
+    "ГУ МВД Первого района",
+    "ГУ МВД Второго района",
+    "ГУ МВД Третьего района",
+    "ГУ МВД Четвертого района"
+  ]
+}
