@@ -1,3 +1,6 @@
+table {
+  width: 100%;
+}
 .table-row {
   display: flex;
   align-items: center;
@@ -9,11 +12,7 @@
     font-weight: 500;
   }
 }
-.table-row.active {
-  border: 2px solid #757575;
-  padding: 0;
-  padding-bottom: 1px;
-}
+
 .table-cell {
   width: 200px;
   padding: 10px;
@@ -25,7 +24,10 @@
   justify-content: center;
 }
 .archived {
-  background-color: #c8e6c9;
+  background-color: #ffe0b2;
+}
+.active {
+  background-color: #81c784;
 }
 .toolbar {
   display: flex;

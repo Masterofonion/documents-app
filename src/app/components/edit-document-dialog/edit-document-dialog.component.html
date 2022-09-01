@@ -1,1 +1,72 @@
-<p>edit-document-dialog works!</p>
+<div *ngIf="serviceData$ | async; let serviceData">
+  <mat-form-field appearance="fill">
+    <mat-label>Вид документа</mat-label>
+    <mat-select [(ngModel)]="documentInfo.documentType">
+      <mat-option value="">Вид документа</mat-option>
+      <mat-option
+        [value]="documentName.key"
+        *ngFor="let documentName of serviceData.documentNames | keyvalue"
+        >{{ documentName.value }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Серия</mat-label>
+    <input
+      [(ngModel)]="documentInfo.series"
+      matInput
+      placeholder="Серия"
+      value=""
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Номер</mat-label>
+    <input
+      [(ngModel)]="documentInfo.number"
+      matInput
+      placeholder="Номер"
+      value=""
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Организация, выдавшая документ</mat-label>
+    <input
+      [(ngModel)]="documentInfo.organization"
+      matInput
+      placeholder="Организация, выдавшая документ"
+      value=""
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Организация, выдавшая документ</mat-label>
+    <mat-select [(ngModel)]="documentInfo.documentType">
+      <mat-option value="">Организация, выдавшая документ</mat-option>
+      <mat-option
+        [value]="documentName.key"
+        *ngFor="let documentName of serviceData.organizations | keyvalue"
+        >{{ documentName.value }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="example-form-field">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="datepicker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="primary" matDatepickerApply>
+          Apply
+        </button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="documentInfo" cdkFocusInitial>
+    Создать
+  </button>
+</mat-dialog-actions>
