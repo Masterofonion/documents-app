@@ -57,9 +57,23 @@ export class DocumentsTableComponent implements OnInit {
       this.activeId = '';
     }
   }
-  openDialog() {
-    const dialogRef = this.dialog.open(EditDocumentDialogComponent);
+  openDialog(mode: 'edit' | 'create') {
+    let user = null;
+    if (mode === 'edit') {
+      user = Object.assign({}, this.data.getDocumentById(this.activeId));
+    }
+    const dialogRef = this.dialog.open(EditDocumentDialogComponent, {
+      data: { user: user, mode: mode },
+    });
     dialogRef.afterClosed().subscribe((data) => {
+      if (data) {
+        if (mode === 'create') {
+          this.data.saveNewDocument(data, this.filters);
+        }
+        if (mode === 'edit') {
+          this.data.patchDocument(data, this.filters);
+        }
+      }
       console.log(data);
     });
   }
@@ -76,5 +90,8 @@ export class DocumentsTableComponent implements OnInit {
 
   resetFilteredData() {
     this.data.resetFilteredData();
+  }
+  deleteDocument() {
+    this.data.deleteDocument(this.activeId, this.filters);
   }
 }

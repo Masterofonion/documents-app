@@ -1,18 +1,23 @@
 <section>
   <div *ngIf="serviceData" class="toolbar">
     <div class="buttons">
-      <button (click)="openDialog()" mat-mini-fab color="primary">
+      <button (click)="openDialog('create')" mat-mini-fab color="primary">
         <mat-icon>add</mat-icon>
       </button>
       <button
-        (click)="openDialog()"
+        (click)="openDialog('edit')"
         [disabled]="!activeId"
         mat-mini-fab
         color="primary"
       >
         <mat-icon>edit</mat-icon>
       </button>
-      <button [disabled]="!activeId" mat-mini-fab color="primary">
+      <button
+        (click)="deleteDocument()"
+        [disabled]="!activeId"
+        mat-mini-fab
+        color="primary"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </div>

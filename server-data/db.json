@@ -7,16 +7,9 @@
       "number": "123321",
       "dateOfIssue": "2002-11-02T00:00:00",
       "isMain": true,
-      "isArchived": false
-    },
-    {
-      "id": "2",
-      "documentType": "internationalPassport",
-      "series": "jh67",
-      "number": "234432",
-      "dateOfIssue": "2012-01-22T00:00:00",
-      "isMain": true,
-      "isArchived": true
+      "isArchived": false,
+      "organization": "ГУ МВД Первого района",
+      "organizationCode": "123321"
     },
     {
       "id": "3",
@@ -25,16 +18,20 @@
       "number": "345543",
       "dateOfIssue": "1992-12-12T00:00:00",
       "isMain": false,
-      "isArchived": false
+      "isArchived": true,
+      "organization": "ГУ МВД Первого района",
+      "organizationCode": "123323"
     },
     {
-      "id": "4",
-      "documentType": "birthCertificate",
-      "series": "lkhj",
-      "number": "456654",
-      "dateOfIssue": "2020-05-17T00:00:00",
+      "id": "x52yXP7",
+      "documentType": "passport",
+      "series": "1234",
+      "number": "12344",
+      "organization": "ГУ МВД Второго района",
+      "organizationCode": "354566",
+      "dateOfIssue": "2022-08-11T21:00:00.000Z",
       "isMain": false,
-      "isArchived": true
+      "isArchived": false
     }
   ],
   "document-names": {

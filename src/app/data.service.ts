@@ -45,4 +45,39 @@ export class DataService {
   resetFilteredData() {
     this.tableData$.next(this.fullTableData);
   }
+  saveNewDocument(newDocument: DocumentItem, filters: Filters) {
+    this.http
+      .post<DocumentItem>(`${this.baseUrl}/documents`, newDocument)
+      .subscribe((data) => {
+        this.fullTableData.push(data);
+        this.filterData(filters);
+      });
+  }
+  deleteDocument(id: string, filters: Filters) {
+    this.http.delete(`${this.baseUrl}/documents/${id}`).subscribe((data) => {
+      console.log(data);
+      let index = this.fullTableData.findIndex((item) => item.id === id);
+      if (index >= 0) {
+        this.fullTableData.splice(index, 1);
+        this.filterData(filters);
+      }
+    });
+  }
+  patchDocument(editedDoc: DocumentItem, filters: Filters) {
+    this.http
+      .patch<DocumentItem>(
+        `${this.baseUrl}/documents/${editedDoc.id}`,
+        editedDoc
+      )
+      .subscribe((data) => {
+        let index = this.fullTableData.findIndex((item) => item.id === data.id);
+        if (index >= 0) {
+          this.fullTableData.splice(index, 1, data);
+          this.filterData(filters);
+        }
+      });
+  }
+  getDocumentById(id: string) {
+    return this.fullTableData.find((item) => item.id === id);
+  }
 }

@@ -7,6 +7,7 @@ export interface DocumentItem {
   isMain: boolean;
   isArchived: boolean;
   organization: string;
+  organizationCode: string;
 }
 export class DocumentInfo {
   id = '';
@@ -14,6 +15,7 @@ export class DocumentInfo {
   series = '';
   number = '';
   organization = '';
+  organizationCode = '';
   dateOfIssue = new Date().toISOString();
   isMain = false;
   isArchived = false;
