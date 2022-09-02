@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { mergeMap, Observable, tap } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { map, mergeMap, Observable, tap } from 'rxjs';
 import { DataService } from 'src/app/data.service';
-import { DocumentItem, ServiceData } from 'src/app/model/model';
+import { DocumentItem, Filters, ServiceData } from 'src/app/model/model';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditDocumentDialogComponent } from '../edit-document-dialog/edit-document-dialog.component';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -16,10 +16,8 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class DocumentsTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
-
-  // serviceData$: Observable<ServiceData> = this.data.getServiceData();
   serviceData: ServiceData;
-  tableData: DocumentItem[];
+  serviceData$: Observable<ServiceData> = this.data.getServiceData();
   activeId = '';
   displayedColumns: string[] = [
     'isMain',
@@ -29,7 +27,7 @@ export class DocumentsTableComponent implements OnInit {
     'dateOfIssue',
   ];
   dataSource: any;
-  filters = { documentType: '', number: '' };
+  filters = new Filters();
   constructor(
     private data: DataService,
     private dialog: MatDialog,
@@ -37,22 +35,21 @@ export class DocumentsTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.data.initTableData();
     this.data
       .getServiceData()
       .pipe(
         tap((data) => {
           this.serviceData = data;
         }),
-        mergeMap(() => {
-          return this.data.getTableData();
-        })
+        mergeMap(() => this.data.getTableData())
       )
       .subscribe((data) => {
-        this.tableData = data;
-        this.dataSource = new MatTableDataSource(this.tableData);
+        this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
       });
   }
+
   chooseDocument(id: string) {
     if (id !== this.activeId) {
       this.activeId = id;
@@ -74,23 +71,10 @@ export class DocumentsTableComponent implements OnInit {
     }
   }
   filterData() {
-    let filteredData = this.tableData.filter((item) => {
-      return (
-        (!this.filters['documentType'] ||
-          item['documentType'] === this.filters['documentType']) &&
-        (!this.filters['number'] ||
-          item['number'].startsWith(this.filters['number']))
-      );
-    });
-    this.dataSource = new MatTableDataSource(filteredData);
-    this.dataSource.sort = this.sort;
+    this.data.filterData(this.filters);
   }
-  setFilter(type: 'documentType' | 'number', value: any) {
-    console.log(value);
-    this.filters[type] = value;
-  }
+
   resetFilteredData() {
-    this.dataSource = new MatTableDataSource(this.tableData);
-    this.dataSource.sort = this.sort;
+    this.data.resetFilteredData();
   }
 }

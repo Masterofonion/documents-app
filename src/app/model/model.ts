@@ -22,3 +22,7 @@ export interface ServiceData {
   organizations: string[];
   documentNames: { [key: string]: string };
 }
+export class Filters {
+  documentType = '';
+  number = '';
+}

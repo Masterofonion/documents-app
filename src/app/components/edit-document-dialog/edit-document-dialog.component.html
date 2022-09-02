@@ -28,18 +28,10 @@
       value=""
     />
   </mat-form-field>
+
   <mat-form-field appearance="fill">
     <mat-label>Организация, выдавшая документ</mat-label>
-    <input
-      [(ngModel)]="documentInfo.organization"
-      matInput
-      placeholder="Организация, выдавшая документ"
-      value=""
-    />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Организация, выдавшая документ</mat-label>
-    <mat-select [(ngModel)]="documentInfo.documentType">
+    <mat-select [(ngModel)]="documentInfo.organization">
       <mat-option value="">Организация, выдавшая документ</mat-option>
       <mat-option
         [value]="documentName.key"
