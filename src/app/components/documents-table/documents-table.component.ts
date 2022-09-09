@@ -90,8 +90,13 @@ export class DocumentsTableComponent implements OnInit {
 
   resetFilteredData() {
     this.data.resetFilteredData();
+    this.clearInputs();
   }
   deleteDocument() {
     this.data.deleteDocument(this.activeId, this.filters);
+  }
+  clearInputs() {
+    let keys = Object.keys(this.filters) as (keyof Filters)[];
+    keys.map((key) => (this.filters[key] = ''));
   }
 }
