@@ -19,6 +19,7 @@ export class DocumentsTableComponent implements OnInit {
   serviceData: ServiceData;
   serviceData$: Observable<ServiceData> = this.data.getServiceData();
   activeId = '';
+  isArchivedShown = false;
   displayedColumns: string[] = [
     'isMain',
     'documentType',

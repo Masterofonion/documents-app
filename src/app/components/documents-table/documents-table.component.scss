@@ -25,6 +25,10 @@ table {
 }
 .archived {
   background-color: #ffe0b2;
+  display: none;
+}
+.archived-shown {
+  display: table-row;
 }
 .active {
   background-color: #81c784;

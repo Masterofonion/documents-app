@@ -7,7 +7,7 @@
       "number": "123321",
       "dateOfIssue": "2002-11-02T00:00:00",
       "isMain": true,
-      "isArchived": false,
+      "isArchived": true,
       "organization": "ГУ МВД Первого района",
       "organizationCode": "123321"
     },
@@ -32,6 +32,17 @@
       "dateOfIssue": "2022-08-11T21:00:00.000Z",
       "isMain": false,
       "isArchived": false
+    },
+    {
+      "id": "DabR3AT",
+      "documentType": "internationalPassport",
+      "series": "6543",
+      "number": "sdfafg",
+      "organization": "ГУ МВД Третьего района",
+      "organizationCode": "",
+      "dateOfIssue": "2022-09-05T21:00:00.000Z",
+      "isMain": true,
+      "isArchived": true
     }
   ],
   "document-names": {

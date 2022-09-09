@@ -44,6 +44,9 @@
     </mat-form-field>
     <button (click)="filterData()" mat-raised-button>Найти</button>
     <button (click)="resetFilteredData()" mat-raised-button>Очистить</button>
+    <mat-checkbox [(ngModel)]="isArchivedShown"
+      >Показать архивные
+    </mat-checkbox>
   </div>
   <table
     matSort
@@ -116,6 +119,7 @@
       (click)="chooseDocument(row.id)"
       [class.active]="activeId === row.id"
       [class.archived]="row.isArchived"
+      [class.archived-shown]="isArchivedShown && row.isArchived"
       class=""
       mat-row
       *matRowDef="let row; columns: displayedColumns"
